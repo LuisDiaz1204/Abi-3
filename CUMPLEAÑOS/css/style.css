@@ -1,0 +1,160 @@
+/* ==========================================================================
+   1. ESTILOS BASE Y CONTENEDOR
+   ========================================================================== */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #4d5193;
+    margin: 0;
+    
+    background-image: url("../img/Abi.jpeg"); 
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    background-blend-mode: multiply;
+}
+
+h1 {
+    color: #FFFFFF; /* Cambia este código por el color que quieras (aquí está en blanco) */
+    font-family: sans-serif; /* Opcional: por si quieres cambiarle la fuente */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Opcional: le da una sombra coqueta para que resalte del fondo */
+}
+
+.contenedor {
+    position: relative;
+    width: 360px;
+    height: 240px;
+}
+
+/* ==========================================================================
+   2. PARTES DEL SOBRE
+   ========================================================================== */
+/* Tapa superior del sobre */
+.superior {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 180px solid transparent;
+    border-right: 180px solid transparent;
+    border-top: 120px solid #FFEABB;
+    border-bottom: 120px solid transparent;
+    z-index: 3;
+    transform-origin: top;
+    transition: transform 0.75s ease-in-out; /* Corregido: era transition, no transform */
+}
+
+/* Cuerpo/Fondo del sobre */
+.carta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 180px solid #FFE1AF;
+    border-right: 180px solid #FFEBCC;
+    border-top: 120px solid transparent;
+    border-bottom: 120px solid #FFE1AF;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   3. LA CARTA (EL MENSAJE OCULTO)
+   ========================================================================== */
+.mensaje {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1.5rem;
+    line-height: 1.5rem;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: "Great Vibes", cursive, sans-serif;
+    font-size: 11px;
+    background: #E6D9A2;
+    width: 360px;
+    height: 240px;
+    z-index: 1;
+    transition: transform 0.75s ease-in-out, z-index 0.75s ease-in-out;
+}
+
+.mensaje:before {
+    content: "";
+    border-style: dotted;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+}
+
+.mensaje p {
+    position: relative;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   4. CORAZÓN (ICONO)
+   ========================================================================== */
+.bx {
+    position: absolute;
+    color: red;
+    top: 90px;
+    left: 155px;
+    font-size: 50px;
+    z-index: 4; /* Se asegura de estar encima del sobre cerrado */
+    animation: palpitar 0.6s linear infinite;
+}
+
+/* ==========================================================================
+   5. BOTONES DE ACCIÓN
+   ========================================================================== */
+.botones {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.boton {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #F5F5F5, #303841);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.boton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   6. CLASES DE INTERACCIÓN (JS) Y ANIMACIONES
+   ========================================================================== */
+/* Cuando se abre la tapa */
+.abrir-superior {
+    transform: rotateX(180deg); /* Corregido: Sin comillas */
+    z-index: 0; /* Pasa al fondo para no tapar el mensaje */
+}
+
+/* Cuando la carta sube */
+.abrir-mensaje {
+    transform: translateY(-210px); /* Sube lo suficiente para revelar el texto completo */
+    z-index: 5; /* Salta al frente de todo el sobre */
+}
+
+@keyframes palpitar {
+    0% { transform: scale(1.0); }
+    50% { transform: scale(1.15); }
+    100% { transform: scale(1.0); }
+}
